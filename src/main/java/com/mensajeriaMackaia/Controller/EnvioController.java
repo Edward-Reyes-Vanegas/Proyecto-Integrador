@@ -58,7 +58,6 @@ public class EnvioController {
         this.envioService.actualizar(envioDto);
         String mensaje="Numero De Guia: "+envioDto.getNumeroGuia() + "  Estado del Envio: "+envioDto.getEstadoEnvio();
         return ResponseEntity.ok(mensaje);
-        //prueba
     }
 
 
