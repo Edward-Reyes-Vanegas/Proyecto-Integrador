@@ -26,7 +26,7 @@ public class EmpleadoService{
 
     public String actualizar (Empleado empleado){
         empleadoRepository.save(empleado);
-        return "Cliente Actualizado Exitosamente";
+        return "Empleasdo Actualizado Exitosamente";
     }
 
     public String eliminar(Long cedula ){

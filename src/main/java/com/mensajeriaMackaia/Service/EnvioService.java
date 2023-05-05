@@ -44,7 +44,9 @@ public class EnvioService {
         Integer peso=envioDto.getPeso();
 
         // Validar que todos los campos obligatorios estén presentes
-        if (cedulaCliente == null || ciudadOrigen == null || ciudadDestino == null || direccionDestino == null || nombreDestinatario == null || celularDestinatario == null || valorDeclarado == null || peso== null) {
+        if (cedulaCliente == null || ciudadOrigen == null || ciudadDestino == null || direccionDestino == null || nombreDestinatario == null || celularDestinatario == null ||
+                valorDeclarado == null || peso== null) {
+
             throw new InvalidDataException("Todos los campos son obligatorios.");
         }
 
@@ -56,29 +58,31 @@ public class EnvioService {
         }
 
         // Calcular el tipo de paquete
-        String tipoPaquete = null;
+        String tipoPaquete1 = null;
         Long valor = 0L;
         Integer id=null;
         if (peso < 2) {
-            tipoPaquete = "LIVIANO";
+            tipoPaquete1 = tipoPaquete.LIVIANO.name();
             valor=30000L;
         } else if (peso >= 2 && peso < 5) {
-            tipoPaquete = "MEDIANO";
+            tipoPaquete1 = tipoPaquete.MEDIANO.name();
             valor=40000L;
         } else {
-            tipoPaquete = "GRANDE";
+            tipoPaquete1 = tipoPaquete.GRANDE.name();
             valor=50000L;
         }
 
         // Crear el paquete
-        Paquete paquete = new Paquete(id,tipoPaquete, peso, valorDeclarado);
+        Paquete paquete = new Paquete(id,tipoPaquete1, peso, valorDeclarado);
         paqueteRepository.save(paquete);
 
         // Crear el envío
         LocalTime hora= LocalTime.now();
         String horaEntrega =hora.toString();
         String numeroGuia = GeneradorGuia.generar();
-        Envio envio = new Envio(numeroGuia,cliente.get(),empleado.get(), paquete, ciudadOrigen, ciudadDestino,direccionDestino, nombreDestinatario, celularDestinatario, horaEntrega, "RECIBIDO",valor);
+        Envio envio = new Envio(numeroGuia,cliente.get(),empleado.get(), paquete, ciudadOrigen, ciudadDestino,direccionDestino, nombreDestinatario, celularDestinatario,
+                horaEntrega, estadoEnvio.RECIBIDO.name(),valor);
+
         envioRepository.save(envio);
         envioDto.setNumeroGuia(envio.getNumeroGuia());
         envioDto.setEstadoEnvio(envio.getEstadoEnvio());
@@ -92,7 +96,7 @@ public class EnvioService {
             throw new InvalidDataException("El numero de guia es obligatorio.");
         }
 
-        // Verificar que el cliente exista en la base de datos
+        // Verificar que el Nummero de Guia exista en la base de datos
         Optional<Envio> envio = envioRepository.findById(numeroGuia);
 
         if (envio.isEmpty()) {
@@ -102,6 +106,7 @@ public class EnvioService {
         EnvioDto envioDto1 = new EnvioDto(envio.get().getNumeroGuia(), envio.get().getCliente().getCedula(), envio.get().getEmpleado().getCedula(), envio.get().getCiudadOrigen(),
                 envio.get().getCiudadDestino(), envio.get().getDireccionDestino(), envio.get().getNombreDestinatario(), envio.get().getCelularDestinatario(),
                 envio.get().getPaquete().getValorDeclarado(), envio.get().getPaquete().getPeso(), envio.get().getEstadoEnvio(), envio.get().getValorEnvio());
+
         return envioDto1;
 
     }
@@ -109,40 +114,39 @@ public class EnvioService {
     public EnvioDto actualizar(EnvioDto envioDto) {
 
         String numeroGuia= envioDto.getNumeroGuia();
-        String estadoEnvio=envioDto.getEstadoEnvio();
+        String estadoEnvio1=envioDto.getEstadoEnvio();
         Long cedulaEmpleado=envioDto.getCedulaEmpleado();
 
         // Validar que todos los campos obligatorios estén presentes
-        if (numeroGuia == null || estadoEnvio == null || cedulaEmpleado == null) {
+        if (numeroGuia == null || estadoEnvio1 == null || cedulaEmpleado == null) {
             throw new InvalidDataException("Todos los campos son obligatorios.");
         }
 
-        // Verificar que el cliente exista en la base de datos
         Optional<Envio> envio = envioRepository.findById(numeroGuia);
         Optional<Empleado> empleado = empleadoRepository.findById(cedulaEmpleado);
         if (envio.isEmpty() || empleado.isEmpty()) {
             throw new DataNotFoundException("El empleado con cedula " + cedulaEmpleado + " no existe  o el numero de guia "+numeroGuia+" no existe ");
         }
 
-        // Calcular el tipo de paquete
+        // Valoidar tipo de Conductor
         Empleado empleado1 = empleado.get();
-        if (empleado1.getTipoEmpleado().equals("CONDUCTOR")) {
+        if (empleado1.getTipoEmpleado().equals(tipoEmpleado.CONDUCTOR.name())) {
             throw new InvalidDataException("No tiene los permisos para actualizar la informacion");
         }
 
         Envio envio1=envio.get();
 
-        if ((envio1.getEstadoEnvio().equals("RECIBIDO")) && (estadoEnvio.equals("RECIBIDO"))) {
-            estadoEnvio="EN RUTA";
-            envio1.setEstadoEnvio(estadoEnvio);
-        }else if ((envio1.getEstadoEnvio().equals("EN RUTA")) && (estadoEnvio.equals("EN RUTA"))) {
-            estadoEnvio = "ENTREGADO";
-            envio1.setEstadoEnvio(estadoEnvio);
+        if ((envio1.getEstadoEnvio().equals(estadoEnvio.RECIBIDO.name())) && (estadoEnvio1.equals(estadoEnvio.RECIBIDO.name()))) {
+            estadoEnvio1=estadoEnvio.EN_RUTA.name();
+            envio1.setEstadoEnvio(estadoEnvio1);
+        }else if ((envio1.getEstadoEnvio().equals(estadoEnvio.EN_RUTA)) && (estadoEnvio1.equals(estadoEnvio.EN_RUTA.name()))) {
+            estadoEnvio1 = estadoEnvio.ENTREGADO.name();
+            envio1.setEstadoEnvio(estadoEnvio1);
         } else {
             throw new InvalidDataException("El cambio de estado no cumple con las validaciones");
         }
 
-        // Crear el envío
+        // Mostrar datos Envio
         Cliente cliente=envio1.getCliente();
         envioDto.setCedulaCliente(cliente.getCedula());
         envioDto.setCiudadOrigen(envio1.getCiudadOrigen());
