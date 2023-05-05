@@ -17,7 +17,9 @@ public class EnvioDto {
     public EnvioDto() {
     }
 
-    public EnvioDto(String numeroGuia, Long cedulaCliente, Long cedulaEmpleado, String ciudadOrigen, String ciudadDestino, String direccionDestino, String nombreDestinatario, String celularDestinatario, Double valorDeclarado, Integer peso, String estadoEnvio,Long valorEnvio) {
+    public EnvioDto(String numeroGuia, Long cedulaCliente, Long cedulaEmpleado, String ciudadOrigen, String ciudadDestino, String direccionDestino, String nombreDestinatario,
+                    String celularDestinatario, Double valorDeclarado, Integer peso, String estadoEnvio,Long valorEnvio) {
+
         this.numeroGuia = numeroGuia;
         this.cedulaCliente = cedulaCliente;
         this.cedulaEmpleado = cedulaEmpleado;
@@ -32,7 +34,9 @@ public class EnvioDto {
         this.valorEnvio=valorEnvio;
     }
 
-    public EnvioDto(Long cedulaCliente, String ciudadOrigen, String ciudadDestino, String direccionDestino, String nombreDestinatario, String celularDestinatario, Double valorDeclarado, Integer peso) {
+    public EnvioDto(Long cedulaCliente, String ciudadOrigen, String ciudadDestino, String direccionDestino, String nombreDestinatario, String celularDestinatario,
+                    Double valorDeclarado, Integer peso) {
+
         this.cedulaCliente = cedulaCliente;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
