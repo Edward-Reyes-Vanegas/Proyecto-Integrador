@@ -33,6 +33,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	testImplementation 'junit:junit:4.13.2'
 	testImplementation 'org.springframework.security:spring-security-test'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'com.google.cloud:spring-cloud-gcp-starter-storage'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	//compile "io.springfox:springfox-swagger-ui:3.0.0"
