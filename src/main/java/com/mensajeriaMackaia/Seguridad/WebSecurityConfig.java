@@ -31,12 +31,12 @@ public class WebSecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(){
         return new InMemoryUserDetailsManager(
-                User.withUsername("user")
-                        .password(passwordEncoder().encode("password"))
+                User.withUsername("usuario")
+                        .password(passwordEncoder().encode("123456"))
                         .authorities("read")
                         .build(),
                 User.withUsername("admin")
-                        .password(passwordEncoder().encode("admin123"))
+                        .password(passwordEncoder().encode("admin1234"))
                         .authorities("read","write")
                         .build()
         );
