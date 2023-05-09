@@ -370,6 +370,6 @@ La clase HotelAshirApplication es la clase principal del proyecto que se utiliza
 
 ![Diagrama UML](UML.jpg)
 
-## Diagrama Base De Datos
+## Diagrama Base De Datos:
 
 ![Diagrama Base](Diagrama-Base-Datos.png)
