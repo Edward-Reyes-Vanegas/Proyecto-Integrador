@@ -78,7 +78,7 @@ public class EnvioServiceTest {
         Double valorDeclarado = 19000.0;
         Integer peso = 2;
         EnvioDto envioDto = new EnvioDto(numeroGuia, cedulaCliente, 123456789L, ciudadOrigen, ciudadDestino, direccionDestino, nombreDestinatario, celularDestinatario, valorDeclarado, peso, "RECIBIDO", 40000L);
-        this.envioService.EnvioPorGuia(envioDto);
+        this.envioService.EnvioPorGuia(numeroGuia);
         when(envioRepository.findById(any())).thenReturn(Optional.empty());
         assertTrue(this.envioRepository==null);
     }

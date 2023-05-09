@@ -37,21 +37,6 @@ public class EnvioController {
         return ResponseEntity.ok(mensaje);
     }
 
-    @GetMapping("/envio")
-    public EnvioDto envioPorGuia(@RequestBody EnvioDto envioDto) {
-
-        return envioService.EnvioPorGuia(envioDto);
-
-    }
-
-    @GetMapping("/envios")
-    public List<EnvioDto> enviosPorEstado(@RequestBody EnvioDto envioDto) {
-
-        return envioService.enviosPorEstado(envioDto);
-
-    }
-
-
     @PutMapping("/envio")
     public ResponseEntity<?> actualizar(@RequestBody EnvioDto envioDto) {
 
@@ -60,5 +45,16 @@ public class EnvioController {
         return ResponseEntity.ok(mensaje);
     }
 
+    @GetMapping("/envio{guia}")
+    public EnvioDto envioPorGuia(@PathVariable("guia") String  numeroGuia) {
 
+        return envioService.EnvioPorGuia(numeroGuia);
+
+    }
+    @GetMapping("/envios{cedula}/{estado}")
+    public List<EnvioDto> enviosPorEstado(@PathVariable("cedula") Long  cedulaEmpleado,@PathVariable("estado") String  estadoEnvio) {
+
+        return envioService.enviosPorEstado(cedulaEmpleado, estadoEnvio);
+
+    }
 }
