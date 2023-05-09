@@ -366,5 +366,3 @@ El proyecto está organizado en cuatro paquetes principales, cada uno correspond
 - El paquete **Service** contiene las clases de servicios para el microservicios de Cliente, Empleado, Paquete y Envio, que contienen la lógica de negocio.
 La clase HotelAshirApplication es la clase principal del proyecto que se utiliza para iniciar la aplicación.
 
-Además, hay un paquete adicional llamado common que contiene clases y utilidades compartidas por los microservicios.
-
