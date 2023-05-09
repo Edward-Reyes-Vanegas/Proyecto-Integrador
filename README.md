@@ -1,6 +1,5 @@
-# Proyecto de Mensajería Express
-
-Este es un proyecto de mensajería express que utiliza Java y Spring para crear un sistema de seguimiento y gestión de envíos. El proyecto utiliza una base de datos MySQL con un modelo entidad-relación, y documentación en Swagger para especificar los endpoints de los microservicios. También utiliza el patrón de diseño DTO, pruebas unitarias con Mockito y JUni y está dividido en microservicios para Cliente, Empleado y Envío. La integración continua se realiza con GitHub y el despliegue se realiza en Google Cloud Platform.
+# Proyecto de Mensajería y Envios
+Este es un proyecto de mensajería express que utiliza Java y Spring para crear un sistema de seguimiento y gestión de envíos. El proyecto utiliza una base de datos MySQL con un modelo entidad-relación, y documentación en Swagger para especificar los endpoints de los microservicios. También utiliza el patrón de diseño DTO, pruebas unitarias con Mockito y JUni y está dividido en microservicios para Cliente, Empleado y Envío. La integración continua se realiza con GitHub Actions y el despliegue se realiza en Google Cloud Platform.
 
 El proyecto esta hecho principalmente con las siguientes tecnologías: 
 
