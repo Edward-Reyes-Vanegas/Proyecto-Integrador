@@ -89,9 +89,8 @@ public class EnvioService {
         return envioDto;
     }
 
-    public EnvioDto EnvioPorGuia(EnvioDto envioDto){
+    public EnvioDto EnvioPorGuia(String numeroGuia){
 
-        String numeroGuia=envioDto.getNumeroGuia();
         if (numeroGuia == null ) {
             throw new InvalidDataException("El numero de guia es obligatorio.");
         }
@@ -161,11 +160,7 @@ public class EnvioService {
         return envioDto;
     }
 
-    public List<EnvioDto> enviosPorEstado(EnvioDto envioDto) {
-
-        Long cedulaEmpleado = envioDto.getCedulaEmpleado();
-        String estadoEnvio = envioDto.getEstadoEnvio();
-
+    public List<EnvioDto> enviosPorEstado(Long cedulaEmpleado, String estadoEnvio) {
 
         // Validar que todos los campos obligatorios estén presentes
         if (estadoEnvio == null || cedulaEmpleado == null) {
