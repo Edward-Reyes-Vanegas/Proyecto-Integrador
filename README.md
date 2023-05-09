@@ -1,4 +1,4 @@
-# Proyecto de Mensajería Express
+# Proyecto de Mensajería Y Envios
 
 Este es un proyecto de mensajería express que utiliza Java y Spring para crear un sistema de seguimiento y gestión de envíos. El proyecto utiliza una base de datos MySQL con un modelo entidad-relación, y documentación en Swagger para especificar los endpoints de los microservicios. También utiliza el patrón de diseño DTO, pruebas unitarias con Mockito y JUni y está dividido en microservicios para Cliente, Empleado y Envío. La integración continua se realiza con GitHub y el despliegue se realiza en Google Cloud Platform.
 
@@ -365,6 +365,3 @@ El proyecto está organizado en cuatro paquetes principales, cada uno correspond
 - El paquete **Security** contiene la clase de seguridad que se utiliza para autenticación y autorización de seguridad
 - El paquete **Service** contiene las clases de servicios para el microservicios de Cliente, Empleado, Paquete y Envio, que contienen la lógica de negocio.
 La clase HotelAshirApplication es la clase principal del proyecto que se utiliza para iniciar la aplicación.
-
-Además, hay un paquete adicional llamado common que contiene clases y utilidades compartidas por los microservicios.
-
