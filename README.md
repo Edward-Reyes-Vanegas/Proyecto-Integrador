@@ -365,3 +365,11 @@ El proyecto está organizado en cuatro paquetes principales, cada uno correspond
 - El paquete **Security** contiene la clase de seguridad que se utiliza para autenticación y autorización de seguridad
 - El paquete **Service** contiene las clases de servicios para el microservicios de Cliente, Empleado, Paquete y Envio, que contienen la lógica de negocio.
 La clase HotelAshirApplication es la clase principal del proyecto que se utiliza para iniciar la aplicación.
+
+## Diagrama UML:
+
+![Diagrama UML](UML.jpg)
+
+## Diagrama Base De Datos
+
+![Diagrama Base](Diagrama-Base-Datos.png)
